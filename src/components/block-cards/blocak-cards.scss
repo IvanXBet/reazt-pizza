@@ -1,0 +1,18 @@
+.content{
+    
+    &__items {
+        height: 1409px;
+        width: 100%;
+        background-color: #FFFFFF;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.03);
+        border-radius: 0 0 10px 10px;
+        
+    }
+    &__container {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 0 auto;
+    }
+}

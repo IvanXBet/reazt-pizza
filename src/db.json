@@ -1,0 +1,46 @@
+{
+	"menu": [
+		{
+			"title": "Чизбургер-пицца",
+			"price": 12,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+			"category": "pizza",
+			"id": 1
+		},
+		{
+			"title": "Сырная",
+			"price": 16,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+			"category": "pizza",
+			"id": 2
+		},
+		{
+			"title": "Pizza Margherita",
+			"price": 14,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+			"category": "pizza",
+			"id": 3
+		},
+		{
+			"title": "Pizza Margherita",
+			"price": 17,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+			"category": "pizza",
+			"id": 4
+		},
+		{
+			"title": "Pizza Margherita",
+			"price": 12,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+			"category": "pizza",
+			"id": 5
+		},
+		{
+			"title": "Pizza Margherita",
+			"price": 12,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+			"category": "pizza",
+			"id": 6
+		}
+	]
+}
