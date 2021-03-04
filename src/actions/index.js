@@ -14,9 +14,16 @@ const menuError = () => {
         type : 'MENU_ERROR',
     }
 }
+const orderAdd = (newItemOrder) => {
+    return {
+        type : 'ORDER_ADD',
+        payload: newItemOrder,
+    }
+}
 
 export {
     menuLoaded,
     menuREqested,
     menuError,
+    orderAdd,
 };

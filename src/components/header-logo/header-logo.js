@@ -5,7 +5,7 @@ import logoSvg from './logo-pizza.svg';
 
 import './logo-header.scss';
 
-const LogoHeader = () => {
+const HeaderLogo = () => {
     return (
         <Link to={'/'} className="header__logo">
             
@@ -20,5 +20,5 @@ const LogoHeader = () => {
     )
 }
 
-export default LogoHeader;
+export default HeaderLogo;
                     

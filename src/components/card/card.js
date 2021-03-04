@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-
+import {orderAdd} from '../../actions';
+import {connect} from 'react-redux';
 import './card.scss';
 import Button from './../button/button';
 
@@ -15,13 +16,11 @@ class Card extends Component  {
             {name: 30, label: '30 см.'},
             {name: 40, label: '40 см.'}
         ]
-        
-        
     }
     state = {
         activeDough: 'thin',
         activeDiameter: 26,
-        quantity: 1,
+        quantity: 0,
         added: false,
     }
     
@@ -33,28 +32,48 @@ class Card extends Component  {
         this.setState({activeDiameter:dough});
     }
     
+    addInOrder = () => {
+        const {id, title, url, price} = this.props.menuItem;
+        const {activeDough, activeDiameter, quantity} = this.state;
+        const priceOfPizza = price*activeDiameter;
+        let item = {
+                id,
+                title,
+                url,
+                priceOfPizza,
+                activeDough,
+                activeDiameter,
+                quantity
+            };
+        
+        this.props.newItemOrder(item);
+    }
     
-    onAdded = (e) => {
+     onAdded = async (e) => {
+        
         if(e.target.className === "button__text-circle")
         {
             this.closeAdded();
             return;
         }
 
-        this.setState({added: true});
+        await this.setState({added: true});
+        
         
         if(this.state.added) {
             if(this.state.quantity === 99) {
                 return;
             }
-            const quantityBack = this.state.quantity+1;
-            this.setState({quantity:quantityBack});
-            
+            const newqQantity = this.state.quantity+1;
+            await this.setState({quantity:newqQantity});
+            this.addInOrder();
         }
+        
+        
     }
 
     closeAdded = (e) => {
-        this.setState({added: false, quantity: 1});
+        this.setState({added: false, quantity: 0});
     }
 
     render() {
@@ -116,4 +135,13 @@ class Card extends Component  {
     
 }
 
-export default Card;
+const mapStateToProps = (state) => {
+    return {
+        
+    }
+} 
+const mapDispatchToProps = {
+    orderAdd,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

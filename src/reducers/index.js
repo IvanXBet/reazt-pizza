@@ -31,8 +31,17 @@ const reducer = (state = initialState, {type, payload}) => {
                 loadingMenu: false,
                 errorMenu: true,
             }
-            
+
+        case 'ORDER_ADD':
         
+            return {
+                ...state,
+                order:{
+                    status: true,
+                    orderItems: payload,
+                }
+            }
+                
         default: 
             return state;
     }

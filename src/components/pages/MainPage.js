@@ -5,7 +5,7 @@ import BlockCards from '../block-cards/block-cards';
 const MainPage = () => {
     return (
         <>
-            <Header/>
+            <Header cartButton = {true}/>
             <BlockCards/>
         </>
     )

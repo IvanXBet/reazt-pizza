@@ -1,18 +1,18 @@
 import React from 'react';
-import LogoHeader from '../logo-heder/logo-header';
-import CartHeader from '../cart-header/cart-header';
+import HeaderLogo from '../header-logo/header-logo';
+import HeaderCart from '../header-cart/header-cart';
 
 import './header.scss'
 
 
 
-const Header = () => {
+const Header = ({cartButton}) => {
     return (
         <div className="wrapper">
             <div className="header">
                 <div className = 'container'>
-                    <LogoHeader/>
-                    <CartHeader/>
+                    <HeaderLogo/>
+                    <HeaderCart cartButton = {cartButton}/>
                 </div>
             </div>
         </div>

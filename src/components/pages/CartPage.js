@@ -5,7 +5,7 @@ import Header from '../header/header.js';
 const CartPage = () => {
     return (
         <>
-            <Header/>
+            <Header cartButton = {false}/>
             <Cart/>
         </>
     )
