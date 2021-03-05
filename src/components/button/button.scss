@@ -167,4 +167,60 @@
             
         }
     }
+    &_cartBack {
+        width: 211px;
+        height: 55px;
+        background: #FFFFFF;
+        border: 1px solid #D3D3D3;
+        
+
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+
+        color: #CACACA;
+
+        div {
+            margin-right: 10px;
+        }
+
+        img {
+            margin-top: 3px;
+            margin-right: 10px;
+        }
+        &:hover {
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
+        }
+    }
+
+    &_cartPayment {
+        width: 211px;
+        height: 55px;
+
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+
+        color: #FFFFFF;
+        &:hover {
+            background-color: #FFFFFF;
+            border: 1px solid #EB5A1E;
+            color: #EB5A1E;
+        }
+    }
+    &_cartDelete {
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        background: #FFFFFF;
+        border: 2px solid #D7D7D7;
+        box-sizing: border-box;
+        img {
+            margin-top: 3px;
+        }
+    }
 }

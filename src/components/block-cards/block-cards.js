@@ -24,15 +24,15 @@ class BlockCards extends Component  {
         
             
     }
-    newItemOrder = (newItem) => {
-        this.setState(state => {
+    newItemOrder = async (newItem) => {
+        await this.setState(state => {
             const fakeItem = state.item;
             fakeItem.push(newItem);
             state.item = fakeItem;
         });
        
-        this.props.orderAdd(this.state.item);
-        console.log(this.props.order);
+        await this.props.orderAdd(this.state.item);
+       
     }
     
     render() {

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 
 import './header-cart.scss';
 
+
 class HeaderCart extends Component {
 	state = {
 		price: 150,
