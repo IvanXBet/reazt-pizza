@@ -20,10 +20,17 @@ const orderAdd = (newItemOrder) => {
         payload: newItemOrder,
     }
 }
+const addQuantity = (newQuantity) => {
+    return {
+        type : 'ORDER_ADD_QUANTITY',
+        payload: newQuantity,
+    }
+}
 
 export {
     menuLoaded,
     menuREqested,
     menuError,
     orderAdd,
+    addQuantity,
 };

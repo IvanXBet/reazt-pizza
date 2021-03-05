@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Card from '../card/card';
 import {connect} from 'react-redux';
-import {menuLoaded, menuREqested, menuError, orderAdd} from '../../actions';
+import {menuLoaded, menuREqested, menuError, orderAdd, addQuantity} from '../../actions';
 import WithRestoService from '../hoc/with-pizza-service';
 import Spinner from '../spinner/spinner';
 import Error from '../error/error';
@@ -34,13 +34,21 @@ class BlockCards extends Component  {
         await this.props.orderAdd(this.state.item);
        
     }
+
+    newQuantityInOrder = async (payload) => {
+        
+        const item = payload;
+       
+        await this.props.addQuantity(item);
+       
+    }
     
     render() {
         const {loading, menuItems, error} = this.props;
 
         const spinner = loading ? <Spinner/> : null;
         const errorMenu = error ? <Error/> : null;
-        const content = !(loading || error) ? <View newItemOrder={this.newItemOrder} menuItems = {menuItems}/> : null;
+        const content = !(loading || error) ? <View newItemOrder={this.newItemOrder} newQuantityInOrder={this.newQuantityInOrder} menuItems = {menuItems}/> : null;
         
         return (
             <div className="content__items">
@@ -51,12 +59,12 @@ class BlockCards extends Component  {
         )
     }
 }
-const View = ({menuItems, newItemOrder}) => {
+const View = ({menuItems, newItemOrder, newQuantityInOrder}) => {
     return (
         <div className='content__container'>
             {
                 menuItems.map(menuItem => {
-                    return <Card newItemOrder={newItemOrder} key={menuItem.id} menuItem = {menuItem}/>
+                    return <Card newItemOrder={newItemOrder} newQuantityInOrder={newQuantityInOrder} key={menuItem.id} menuItem = {menuItem}/>
                 })
             }
         </div>
@@ -76,6 +84,7 @@ const mapDispatchToProps = {
     menuREqested,
     menuError,
     orderAdd,
+    addQuantity
 }
 
 export default WithRestoService()(connect(mapStateToProps, mapDispatchToProps)(BlockCards));

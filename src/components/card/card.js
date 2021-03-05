@@ -48,6 +48,21 @@ class Card extends Component  {
         
         this.props.newItemOrder(item);
     }
+
+    addInOrderNewQuantity() {
+        const {id, price} = this.props.menuItem;
+        const {activeDough, activeDiameter, quantity} = this.state;
+        const priceOfPizza = price*activeDiameter;
+
+        let payload = {
+            id,
+            quantity,
+            activeDough,
+            activeDiameter,
+            priceOfPizza
+        }
+         this.props.newQuantityInOrder(payload);
+    }
     
      onAdded = async (e) => {
         
@@ -66,9 +81,14 @@ class Card extends Component  {
             }
             const newqQantity = this.state.quantity+1;
             await this.setState({quantity:newqQantity});
-            this.addInOrder();
+            if(this.state.quantity > 1) {
+                await this.addInOrderNewQuantity();
+            }else {
+                await this.addInOrder();
+            }
+            
         }
-        
+        console.log(this.props.order);
         
     }
 
@@ -90,7 +110,10 @@ class Card extends Component  {
         const liSize = this.size.map(({name, label}) => {
             const activeSize = this.state.activeDiameter === name;
             const clazzSize = activeSize ? 'active' : null;
-            return <li onClick={() => this.onToggleSize(name)} className={clazzSize}>{label}</li>
+            return <li onClick={() => {
+                this.onToggleSize(name)
+                } 
+            }  className={clazzSize}>{label}</li>
         });
 
         let calzzButton = this.state.added ? 'button button_card button_added' : 'button button_card';
@@ -137,7 +160,7 @@ class Card extends Component  {
 
 const mapStateToProps = (state) => {
     return {
-        
+        order: state.orderItems,
     }
 } 
 const mapDispatchToProps = {
