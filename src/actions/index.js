@@ -27,10 +27,39 @@ const addQuantity = (newQuantity) => {
     }
 }
 
+const delOrder = () => {
+    return {
+        type : 'DEL_ORDER'
+    }
+}
+
+const delItemOrder = (id) => {
+    return {
+        type : 'DEL_ITEM_ORDER',
+        payload: id,
+    }
+}
+const offSatus = () => {
+    return {
+        type : 'OFF_STATUS'
+    }
+}
+
+const onFilterSelect = (name) => {
+    return {
+        type : 'SELECT_FILTER',
+        payload: name,
+    }
+}
+
 export {
     menuLoaded,
     menuREqested,
     menuError,
     orderAdd,
     addQuantity,
+    delOrder,
+    delItemOrder,
+    offSatus,
+    onFilterSelect,
 };

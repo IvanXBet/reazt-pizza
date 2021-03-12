@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import {orderAdd} from '../../actions';
-import {connect} from 'react-redux';
 import './card.scss';
+import {connect} from 'react-redux';
+import {delItemOrder, offSatus} from '../../actions';
 import Button from './../button/button';
 
 class Card extends Component  {
     constructor() {
         super()
         this.typs = [
-            {name: 'thin', label: 'тонкое'},
-            {name: 'traditional', label: 'традиционное'}
+            {name: 'тонкое', label: 'тонкое'},
+            {name: 'традиционное', label: 'традиционное'}
         ]
         this.size = [
             {name: 26, label: '26 см.'},
@@ -18,7 +18,7 @@ class Card extends Component  {
         ]
     }
     state = {
-        activeDough: 'thin',
+        activeDough: 'тонкое',
         activeDiameter: 26,
         quantity: 0,
         added: false,
@@ -35,12 +35,12 @@ class Card extends Component  {
     addInOrder = () => {
         const {id, title, url, price} = this.props.menuItem;
         const {activeDough, activeDiameter, quantity} = this.state;
-        const priceOfPizza = price*activeDiameter;
+        const priceOfItem = price*activeDiameter;
         let item = {
                 id,
                 title,
                 url,
-                priceOfPizza,
+                priceOfItem,
                 activeDough,
                 activeDiameter,
                 quantity
@@ -59,7 +59,7 @@ class Card extends Component  {
             quantity,
             activeDough,
             activeDiameter,
-            priceOfPizza
+            priceOfPizza,
         }
          this.props.newQuantityInOrder(payload);
     }
@@ -88,12 +88,14 @@ class Card extends Component  {
             }
             
         }
-        console.log(this.props.order);
+        
         
     }
 
-    closeAdded = (e) => {
+    closeAdded = () => {
         this.setState({added: false, quantity: 0});
+        this.props.delItemOrder(this.props.menuItem.id);
+        this.props.offSatus();
     }
 
     render() {
@@ -144,7 +146,7 @@ class Card extends Component  {
                         <i className="fas fa-plus button_card__plus"></i>
                         <span className="button_card__add">Добавить</span>
                     </div>
-                    <div onClick={this.closeAdded} className="button__circle">
+                    <div className="button__circle">
                         <div className="button__text-circle">{this.state.quantity}</div>
                     </div>
                 </Button>
@@ -157,14 +159,12 @@ class Card extends Component  {
     }
     
 }
-
 const mapStateToProps = (state) => {
-    return {
-        order: state.orderItems,
-    }
+    
 } 
 const mapDispatchToProps = {
-    orderAdd,
+    delItemOrder,
+    offSatus,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

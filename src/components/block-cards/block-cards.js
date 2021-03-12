@@ -11,9 +11,7 @@ import './blocak-cards.scss';
 
 class BlockCards extends Component  {
 
-    state = {
-        item: [],
-    }
+    
 
     componentDidMount() {
         this.props.menuREqested();
@@ -25,13 +23,8 @@ class BlockCards extends Component  {
             
     }
     newItemOrder = async (newItem) => {
-        await this.setState(state => {
-            const fakeItem = state.item;
-            fakeItem.push(newItem);
-            state.item = fakeItem;
-        });
        
-        await this.props.orderAdd(this.state.item);
+        await this.props.orderAdd(newItem);
        
     }
 
@@ -42,13 +35,36 @@ class BlockCards extends Component  {
         await this.props.addQuantity(item);
        
     }
+
+    filterCart = (items, filter) => {
+        switch(filter) {
+            case 'classical':
+                return items.filter(item => item.category === 'classical');
+
+            case 'meat':
+                return items.filter(item => item.category === 'meat');
+
+            case 'vegetarian':
+                return items.filter(item => item.category === 'vegetarian');
+
+            case 'sharp':
+                return items.filter(item => item.category === 'sharp');
+
+            case 'closed':
+                return items.filter(item => item.category === 'closed');
+
+            default: 
+                return items;
+        }
+    }
     
     render() {
         const {loading, menuItems, error} = this.props;
+        let filterItems = this.filterCart(menuItems , this.props.filter);
 
         const spinner = loading ? <Spinner/> : null;
         const errorMenu = error ? <Error/> : null;
-        const content = !(loading || error) ? <View newItemOrder={this.newItemOrder} newQuantityInOrder={this.newQuantityInOrder} menuItems = {menuItems}/> : null;
+        const content = !(loading || error) ? <View newItemOrder={this.newItemOrder} newQuantityInOrder={this.newQuantityInOrder} filterItems = {filterItems}/> : null;
         
         return (
             <div className="content__items">
@@ -59,11 +75,12 @@ class BlockCards extends Component  {
         )
     }
 }
-const View = ({menuItems, newItemOrder, newQuantityInOrder}) => {
+const View = ({filterItems, newItemOrder, newQuantityInOrder}) => {
+    
     return (
         <div className='content__container'>
             {
-                menuItems.map(menuItem => {
+                filterItems.map(menuItem => {
                     return <Card newItemOrder={newItemOrder} newQuantityInOrder={newQuantityInOrder} key={menuItem.id} menuItem = {menuItem}/>
                 })
             }
@@ -77,6 +94,7 @@ const mapStateToProps = (state) => {
         loading: state.loadingMenu,
         error: state.errorMenu,
         order: state.order,
+        filter : state.filter,
     }
 } 
 const mapDispatchToProps = {

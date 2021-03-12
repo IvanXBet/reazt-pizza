@@ -5,7 +5,11 @@ const initialState = {
     
     status:false,
     orderItems: [],
-    
+
+    totalQuantity: 0,
+    totalPrice: 0,
+
+    filter: 'all',
 }
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -33,27 +37,34 @@ const reducer = (state = initialState, {type, payload}) => {
             }
 
         case 'ORDER_ADD':
-        
+            const newTotalPrice = state.totalPrice + payload.priceOfItem;
+            const newTotalQuantity = state.totalQuantity + payload.quantity;
             return {
                 ...state,
-                
                 status: true,
-                orderItems: payload,
-                
+                orderItems: [
+                    ...state.orderItems,
+                    payload,
+                ],
+                totalPrice: newTotalPrice,
+                totalQuantity :newTotalQuantity,
             }
+
         case 'ORDER_ADD_QUANTITY':
+            const newTotalPrice2 = state.totalPrice + payload.priceOfPizza;
+            const newTotalQuantity2 = state.totalQuantity + 1;
             const id = payload.id,
                   quantity = payload.quantity,
                   activeDough = payload.activeDough,
                   activeDiameter = payload.activeDiameter,
-                  priceOfPizza = payload.priceOfPizza;
+                  priceOfItem = quantity * payload.priceOfPizza;
             const item = state.orderItems.find(item => item.id === id);
             const newItem = {
                 ...item,
                 quantity,
                 activeDough,
                 activeDiameter,
-                priceOfPizza
+                priceOfItem
             };
 
             const newArry = state.orderItems.map(item => {
@@ -62,11 +73,51 @@ const reducer = (state = initialState, {type, payload}) => {
                 }
                 return item;
             });
+            
 
             return {
                 ...state,
-                orderItems: newArry
-                
+                orderItems: newArry,
+                totalPrice: newTotalPrice2,
+                totalQuantity: newTotalQuantity2,
+            }
+
+        case 'DEL_ORDER':
+            const newItemOrder = [];
+            return {
+                ...state,
+                status: false,
+                orderItems: newItemOrder,
+                totalQuantity: 0,
+                totalPrice: 0,
+            }
+
+        case 'DEL_ITEM_ORDER':
+            const idx = payload;
+            const itemIndex = state.orderItems.findIndex(item => item.id === idx);
+            console.log(state.orderItems[itemIndex]['priceOfItem']);
+            const totalPriceDelItem = state.totalPrice - state.orderItems[itemIndex]['priceOfItem'];
+            const totalQuantityDelItem = state.totalQuantity - state.orderItems[itemIndex]['quantity'];
+            
+            return {
+                ...state,
+                orderItems: [
+                    ...state.orderItems.slice(0, itemIndex),
+                    ...state.orderItems.slice(itemIndex + 1)
+                ],
+                totalPrice: totalPriceDelItem,
+                totalQuantity: totalQuantityDelItem,
+            }
+        case 'OFF_STATUS':
+            return {
+                ...state,
+                status: false,
+            }
+
+        case 'SELECT_FILTER':
+            return {
+                ...state,
+                filter: payload,
             }
                 
         default: 
