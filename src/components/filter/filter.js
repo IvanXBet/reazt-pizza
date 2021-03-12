@@ -24,7 +24,6 @@ class Filter extends Component {
             {name: 'meat', label: 'Мясные'},
             {name: 'vegetarian', label: 'Вегетарианская'},
             {name: 'sharp', label: 'Острые'},
-            {name: 'closed', label: 'Закрытые'},
         ];
         const items = categories.map(({name, label}) => {
             const active = this.props.filter === name,

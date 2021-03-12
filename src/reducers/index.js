@@ -9,7 +9,7 @@ const initialState = {
     totalQuantity: 0,
     totalPrice: 0,
 
-    filter: 'all',
+    filter: 'classical',
 }
 
 const reducer = (state = initialState, {type, payload}) => {
