@@ -3,9 +3,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
 
-import './cart-no-order.scss';
-import '../button/button.scss';
-import img from './vector.svg';
+import img from '../../assets/img/vector.svg';
 
 class CartNoOrder extends Component  {
     render() {

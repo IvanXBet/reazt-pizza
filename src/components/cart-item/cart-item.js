@@ -5,8 +5,7 @@ import Button from '../button/button';
 
 
 
-import './cart-item.scss';
-import daleteIcon from './cart-icon-delete.svg';
+import daleteIcon from '../../assets/img/cart-icon-delete.svg';
 
 class CartItem extends Component  {
     delItemOrder = () => {

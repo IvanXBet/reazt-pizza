@@ -1,9 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import logoSvg from './logo-pizza.svg';
-
-import './logo-header.scss';
+import logoSvg from '../../assets/img/logo-pizza.svg';
 
 const HeaderLogo = () => {
     return (

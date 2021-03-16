@@ -6,12 +6,10 @@ import CartItem from '../cart-item/cart-item';
 import {Link} from 'react-router-dom';
 
 
-import './cart-block.scss';
-import '../button/button.scss';
 
-import titleIcon from './cart-icon.svg';
-import trashIcon from './cart-icon-trash.svg';
-import backIcon from './cart-icon-back.svg';
+import titleIcon from '../../assets/img/cart-icon.svg';
+import trashIcon from '../../assets/img/cart-icon-trash.svg';
+import backIcon from '../../assets/img/cart-icon-back.svg';
 
 
 class CartBlock extends Component  {

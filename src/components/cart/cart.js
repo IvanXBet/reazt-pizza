@@ -6,9 +6,6 @@ import {offSatus} from '../../actions';
 
 
 
-
-import './cart.scss';
-
 class Cart extends Component  {
     componentDidMount() {
         
@@ -26,7 +23,9 @@ class Cart extends Component  {
         const content = status ? <CartBlock/> : <CartNoOrder/>;
         return (
             <div className='cart'>
-                {content}
+                <div className='container'>
+                    {content}
+                </div>
             </div>
         )
     }

@@ -95,7 +95,6 @@ const reducer = (state = initialState, {type, payload}) => {
         case 'DEL_ITEM_ORDER':
             const idx = payload;
             const itemIndex = state.orderItems.findIndex(item => item.id === idx);
-            console.log(state.orderItems[itemIndex]['priceOfItem']);
             const totalPriceDelItem = state.totalPrice - state.orderItems[itemIndex]['priceOfItem'];
             const totalQuantityDelItem = state.totalQuantity - state.orderItems[itemIndex]['quantity'];
             

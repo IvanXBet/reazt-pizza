@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './card.scss';
 import {connect} from 'react-redux';
 import {delItemOrder, offSatus} from '../../actions';
 import Button from './../button/button';
@@ -128,6 +127,7 @@ class Card extends Component  {
                     <img src= {url}></img>
                 </div>
                 <h4 className='card__title'>{title}</h4>
+                <div className='card__info'></div>
                 <div className="card__selector">
                     <ul className="card__dough">
                         {liTyps}
@@ -142,6 +142,7 @@ class Card extends Component  {
     
                 <div className="card__price">от {price*this.state.activeDiameter} ₽</div>
                 <Button onClick={this.onAdded} className={calzzButton}>
+                    
                     <div className='button_card__text'>
                         <i className="fas fa-plus button_card__plus"></i>
                         <span className="button_card__add">Добавить</span>

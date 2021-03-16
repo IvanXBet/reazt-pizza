@@ -1,0 +1,21 @@
+.content{
+    
+    &__items {
+        width: 100%;
+        background-color: #FFFFFF;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.03);
+        border-radius: 0 0 10px 10px;
+        padding-bottom: 300px;
+    }
+    &__cards {
+        // display: grid;
+        // grid-template: 460px 460px 460px 460px 460px / 280px 280px 280px 280px 280px;
+        // gap: 57px;
+        display: flex;
+        justify-content: flex-start;
+        flex: 0 1 auto;
+        flex-wrap: wrap;
+        
+        
+    }
+}

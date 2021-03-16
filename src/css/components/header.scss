@@ -8,9 +8,9 @@
     border-bottom: 1px solid #F7F7F7;
    
     background-color: #FFFFFF;
-    padding: 50px 70px 0px 70px;
+    padding-top: 50px;
     
-    .container {
+    &__items {
         display: flex;
         align-items: center;
         justify-content: space-between;

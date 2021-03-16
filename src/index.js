@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app/App';
+import App from './components/app/app';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 import ErrorBoundry from './components/error-boundry/error-boundry';
@@ -9,7 +9,6 @@ import PizzaServiceContext from './components/pizza-service-context/pizza-servic
 import store from './store';
 
 import './index.scss';
-import './fonts.css';
 
 const pizzaService = new PizzaService();
 

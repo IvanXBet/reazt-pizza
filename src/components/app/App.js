@@ -1,15 +1,12 @@
-import './App.scss';
 import MainPage from '../pages/MainPage';
 import CartPage from '../pages/CartPage';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-
+import '../../css/app.scss';
 
 const App = () => {
-
 	return (
-		
-		<div className="App">
+		<div className="app">
 			<Switch>
 				
 				<Route path='/' exact><MainPage/></Route>

@@ -6,7 +6,6 @@ import WithRestoService from '../hoc/with-pizza-service';
 import Spinner from '../spinner/spinner';
 import Error from '../error/error';
 
-import './blocak-cards.scss';
 
 
 class BlockCards extends Component  {
@@ -78,12 +77,14 @@ class BlockCards extends Component  {
 const View = ({filterItems, newItemOrder, newQuantityInOrder}) => {
     
     return (
-        <div className='content__container'>
-            {
-                filterItems.map(menuItem => {
-                    return <Card newItemOrder={newItemOrder} newQuantityInOrder={newQuantityInOrder} key={menuItem.id} menuItem = {menuItem}/>
-                })
-            }
+        <div className='container'>
+            <div className='content__cards'>
+                {
+                    filterItems.map(menuItem => {
+                        return <Card newItemOrder={newItemOrder} newQuantityInOrder={newQuantityInOrder} key={menuItem.id} menuItem = {menuItem}/>
+                    })
+                }
+            </div>
         </div>
     )
 }

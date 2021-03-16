@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderLogo from '../header-logo/header-logo';
 import HeaderCart from '../header-cart/header-cart';
 
-import './header.scss'
+
 
 
 
@@ -11,8 +11,10 @@ const Header = ({cartButton}) => {
         <div className="wrapper">
             <div className="header">
                 <div className = 'container'>
-                    <HeaderLogo/>
-                    <HeaderCart cartButton = {cartButton}/>
+                    <div className='header__items'>
+                        <HeaderLogo/>
+                        <HeaderCart cartButton = {cartButton}/>
+                    </div>
                 </div>
             </div>
         </div>

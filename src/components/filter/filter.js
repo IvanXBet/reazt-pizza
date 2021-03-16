@@ -2,12 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {onFilterSelect} from '../../actions';
 
-import './filter.scss';
-import '../button/button.scss';
 
 class Filter extends Component {
     state = {
-        title: 'Все'
+        title: 'Классические'
     }
     componentDidMount() {
         
@@ -41,10 +39,12 @@ class Filter extends Component {
 
         return (
             <div className='filter'>
+            <div className='container'>
                 <div className='filter__buttons'>
-                    {items}
-                </div>
-                <div className='filter__title'>{this.state.title} пиццы</div>
+                        {items}
+                    </div>
+                    <div className='filter__title'>{this.state.title} пиццы</div>
+               </div>
             </div>
         )
    }
