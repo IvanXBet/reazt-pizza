@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {delItemOrder} from '../../actions';
 import Button from '../button/button';
 
 
@@ -9,11 +7,19 @@ import daleteIcon from '../../assets/img/cart-icon-delete.svg';
 
 class CartItem extends Component  {
     delItemOrder = () => {
-        const {id} = this.props.orderItem;
-        this.props.delItemOrder(id);
+        const {id, activeDough, activeDiameter} = this.props.orderItem;
+        const idDelItem = id,
+        activeDoughDelItem = activeDough,
+        activeDiameterDelItem = activeDiameter;
+
+        this.props.delItemOrder({
+            idDelItem,
+            activeDoughDelItem,
+            activeDiameterDelItem,
+        });
     }
     render() {
-        const {id, title, url, activeDough, activeDiameter, quantity, priceOfItem} = this.props.orderItem;
+        const {title, url, activeDough, activeDiameter, quantity, priceOfItem} = this.props.orderItem;
         
         return (
         <div className='cartItem'>
@@ -36,11 +42,6 @@ class CartItem extends Component  {
     }
 }
 
-const mapStateToProps = (state) => {
-    
-} 
-const mapDispatchToProps = {
-    delItemOrder,
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
+
+export default CartItem;

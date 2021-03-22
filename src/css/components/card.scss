@@ -1,26 +1,68 @@
 .card {
+	
 	width: 280px;
 	// height: 459px;
 	background-color: #fff;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin-right: 40px;
-	margin-bottom: 64px;
+	// margin-right: 40px;
+	// margin-bottom: 64px;
 	transition: 0.3s all;
+	overflow: hidden;
+	margin-right: 57px;
+	margin-bottom: 50px;
+        &:nth-child(5n) {
+            margin-right: 0px;
+        }
+	&__top {
+		display: flex;
+		width: calc(200%);
+		user-select: none;
+	}
 	&__img {
 		height: 260px;
+		width: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transition: 0.2s all;
+
+		transform: translateX(-100%);
+        transition: 0.7s all;
 		img {
 			display: block;
 			height: 250px;
-			margin-left: 15px;
+			margin-left: 20px;
 		}
-		&:hover {
-			transform: translateY(2px);
+		&_active {
+			transform: translateX(0%);
+		}
+	}
+	&__info {
+		height: 260px;
+		width: 50%;
+		transform: translateX(0%);
+        transition: 0.7s all;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&_active {
+			transform: translateX(-100%);
+		}
+	}
+	&__ingredients {
+		height: 210px;
+		width: 230px;
+		border-radius: 30px;
+		border: 1px solid #EB5A1E;
+		padding: 15px;
+		li {
+			font-style: normal;
+			font-weight: bold;
+			font-size: 15px;
+			line-height: 24px;
+
+			color: #2C2C2C;
 		}
 	}
 	&__title {
@@ -38,7 +80,7 @@
 	&__selector {
 		user-select: none;
 		margin-top: 22px;
-		width: 280px;
+		width: 100%;
 		height: 85px;
 		background: #F3F3F3;
 		border-radius: 10px;
@@ -117,13 +159,10 @@
 		font-weight: bold;
 		font-size: 22px;
 		line-height: 27px;
-		/* identical to box height */
 
 		letter-spacing: 0.015em;
 
 		color: #000000;
 		
 	}
-	
-	
 }

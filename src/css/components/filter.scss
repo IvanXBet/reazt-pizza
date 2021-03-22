@@ -1,12 +1,13 @@
 .filter {
     box-sizing: border-box;
-    height: 193px;
     background-color: #fff;
-    padding-top: 40px;
+    padding-top: 25px;
+    
     &__buttons {
         margin: 0 auto;
-        height: 46px;
+        min-height: 46px;
         display: flex;
+        flex-wrap: wrap;
     }
     &__title {
         margin-top: 32px;

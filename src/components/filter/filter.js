@@ -5,7 +5,8 @@ import {onFilterSelect} from '../../actions';
 
 class Filter extends Component {
     state = {
-        title: 'Классические'
+        title: 'Все',
+        mobClick: false,
     }
     componentDidMount() {
         
@@ -13,6 +14,14 @@ class Filter extends Component {
     onFilterSelect = (name, title) => {
         this.props.onFilterSelect(name);
         this.setState({title});
+    }
+    onFilter = () => {
+        if(this.state.mobClick === false) {
+            this.setState({mobClick:true});
+        } else {
+            this.setState({mobClick:false});
+        }
+        
     }
 
     render() {
@@ -27,24 +36,30 @@ class Filter extends Component {
             const active = this.props.filter === name,
                   clazz = active ? 'button_filter button_filter_active' : 'button_filter';
             return (
-                <div type='button'
-                    className={`button ${clazz}`}
-                    key={name} 
-                    onClick={() => this.onFilterSelect(name , label)}>
-                        {label}
+                <div>
+                    <div type='button'
+                        className={`button ${clazz}`}
+                        key={name} 
+                        onClick={() => this.onFilterSelect(name , label)}>
+                            {label}
+                    </div>
                 </div>
             )
         });
+        const clazzFilterButtons = this.state.mobClick ? 'block filter__buttons' : 'filter__buttons';
 
 
         return (
             <div className='filter'>
-            <div className='container'>
-                <div className='filter__buttons'>
+                <div className='container'>
+                    <div className='button button_mobFilter' onClick={this.onFilter}>
+                        Фильтр
+                    </div>
+                    <div className={clazzFilterButtons}>
                         {items}
                     </div>
                     <div className='filter__title'>{this.state.title} пиццы</div>
-               </div>
+                </div>
             </div>
         )
    }

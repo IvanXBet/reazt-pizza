@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {delOrder} from '../../actions';
+import {delOrder, delItemOrder} from '../../actions';
 
 import CartItem from '../cart-item/cart-item';
 import {Link} from 'react-router-dom';
@@ -17,8 +17,9 @@ class CartBlock extends Component  {
         this.props.delOrder();
     }
 
-    
-
+    delItemOrder = (payload) => {
+        this.props.delItemOrder(payload);
+    }
 
     render() {
         const {order, totalPrice, totalQuantity} = this.props;
@@ -38,7 +39,7 @@ class CartBlock extends Component  {
                        
                     {
                         order.map(orderItem => {
-                            return <CartItem key={orderItem.id} orderItem = {orderItem}/>
+                            return <CartItem key={orderItem.id} delItemOrder={this.delItemOrder} orderItem = {orderItem}/>
                         })
                         
                     }
@@ -74,6 +75,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = {
     delOrder,
+    delItemOrder,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartBlock);

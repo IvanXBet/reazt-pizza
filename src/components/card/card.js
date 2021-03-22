@@ -19,27 +19,34 @@ class Card extends Component  {
     state = {
         activeDough: 'тонкое',
         activeDiameter: 26,
-        quantity: 0,
-        added: false,
+        img: true,
+        textButton: 'Добавить',
+    }
+
+    componentDidMount() {
+        
     }
     
     onToggleType  (dough)  {
             this.setState({activeDough:dough});
         }
 
-    onToggleSize  (dough)  {
-        this.setState({activeDiameter:dough});
+    onToggleSize  (diameter)  {
+        this.setState({activeDiameter:diameter});
     }
     
     addInOrder = () => {
         const {id, title, url, price} = this.props.menuItem;
-        const {activeDough, activeDiameter, quantity} = this.state;
+        const {activeDough, activeDiameter} = this.state;
         const priceOfItem = price*activeDiameter;
+        const priceOfPizza = price*activeDiameter;
+        const quantity = 1;
         let item = {
                 id,
                 title,
                 url,
                 priceOfItem,
+                priceOfPizza,
                 activeDough,
                 activeDiameter,
                 quantity
@@ -48,60 +55,54 @@ class Card extends Component  {
         this.props.newItemOrder(item);
     }
 
-    addInOrderNewQuantity() {
-        const {id, price} = this.props.menuItem;
-        const {activeDough, activeDiameter, quantity} = this.state;
-        const priceOfPizza = price*activeDiameter;
-
-        let payload = {
+    addInOrderNewQuantity = () => {
+        const id = this.props.menuItem.id;
+        const {activeDough, activeDiameter} = this.state;
+        this.props.newQuantityInOrder({
             id,
-            quantity,
             activeDough,
-            activeDiameter,
-            priceOfPizza,
-        }
-         this.props.newQuantityInOrder(payload);
+            activeDiameter
+        });
     }
+
+   
     
-     onAdded = async (e) => {
-        
-        if(e.target.className === "button__text-circle")
-        {
-            this.closeAdded();
-            return;
-        }
+    onAdded = async () => {
+        const {activeDough, activeDiameter} = this.state;
+        const {menuItem, order} = this.props;
+        let check = false;
 
-        await this.setState({added: true});
-        
-        
-        if(this.state.added) {
-            if(this.state.quantity === 99) {
-                return;
+        if(order.length === 0) {
+            this.addInOrder();
+        } else {
+            order.forEach(item => {
+                if(item.id === menuItem.id && item.activeDough === activeDough && item.activeDiameter === activeDiameter) {
+                            check = true;
+                }
+            });
+
+            if (check) {
+                this.addInOrderNewQuantity();
+            } else {
+                this.addInOrder();
             }
-            const newqQantity = this.state.quantity+1;
-            await this.setState({quantity:newqQantity});
-            if(this.state.quantity > 1) {
-                await this.addInOrderNewQuantity();
-            }else {
-                await this.addInOrder();
-            }
-            
         }
-        
-        
     }
 
-    closeAdded = () => {
-        this.setState({added: false, quantity: 0});
-        this.props.delItemOrder(this.props.menuItem.id);
-        this.props.offSatus();
+    
+    changeInfo = () => {
+        if(this.state.img){
+            this.setState({img:false});
+        } else {
+            this.setState({img:true});
+        }
     }
 
     render() {
         
-        const {title, url, price, category, id} = this.props.menuItem;
-        const {added} = this.state;
-       
+        const {title, url, price, category, ingredients, id} = this.props.menuItem;
+        const {img} = this.state;
+
         const liTyps = this.typs.map(({name, label}) => {
             const activeType = this.state.activeDough === name;
             const clazzType = activeType ? 'active' : null;
@@ -111,23 +112,33 @@ class Card extends Component  {
         const liSize = this.size.map(({name, label}) => {
             const activeSize = this.state.activeDiameter === name;
             const clazzSize = activeSize ? 'active' : null;
-            return <li onClick={() => {
-                this.onToggleSize(name)
-                } 
-            }  className={clazzSize}>{label}</li>
+            return <li onClick={() => this.onToggleSize(name)}  className={clazzSize}>{label}</li>
         });
 
-        let calzzButton = this.state.added ? 'button button_card button_added' : 'button button_card';
+        let calzzButton = this.state.added ? 'button button_card ' : 'button button_card';
 
-        
+        const classImg = img ? `card__img card__img_active ` : 'card__img';
+        const classInfo = img ? 'card__info' : 'card__info  card__info_active';
         
         return(
             <div className = 'card'>
-                <div className='card__img'>
-                    <img src= {url}></img>
+                <div onClick={this.changeInfo} className='card__top'>
+                    <div className={classImg}>
+                        <img src= {url}></img>
+                    </div>
+                    <div className={classInfo}>
+                        <div className='card__ingredients'>
+                            <ul>
+                                {
+                                    ingredients.map((item, index) => {
+                                        return <li key={index}>{item}</li>
+                                    })
+                                }
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <h4 className='card__title'>{title}</h4>
-                <div className='card__info'></div>
                 <div className="card__selector">
                     <ul className="card__dough">
                         {liTyps}
@@ -145,8 +156,9 @@ class Card extends Component  {
                     
                     <div className='button_card__text'>
                         <i className="fas fa-plus button_card__plus"></i>
-                        <span className="button_card__add">Добавить</span>
+                        <span className="button_card__add">{this.state.textButton}</span>
                     </div>
+
                     <div className="button__circle">
                         <div className="button__text-circle">{this.state.quantity}</div>
                     </div>
@@ -161,7 +173,9 @@ class Card extends Component  {
     
 }
 const mapStateToProps = (state) => {
-    
+    return {
+        order: state.orderItems,
+    }
 } 
 const mapDispatchToProps = {
     delItemOrder,

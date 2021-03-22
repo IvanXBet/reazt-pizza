@@ -1,5 +1,4 @@
-@import 'fonts.css';
-@import 'style.scss';
+
 
 .app {
 	background-color: #FFDF8C;
@@ -13,8 +12,10 @@
     outline: none;
     box-sizing: border-box;
     text-decoration: none;
-	
 }
+
+@import 'fonts.css';
+@import 'style.scss';
 
 
 

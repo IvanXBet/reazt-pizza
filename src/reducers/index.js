@@ -9,7 +9,7 @@ const initialState = {
     totalQuantity: 0,
     totalPrice: 0,
 
-    filter: 'classical',
+    filter: 'all',
 }
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -37,8 +37,10 @@ const reducer = (state = initialState, {type, payload}) => {
             }
 
         case 'ORDER_ADD':
-            const newTotalPrice = state.totalPrice + payload.priceOfItem;
+            const newTotalPrice = state.totalPrice + payload.priceOfPizza;
             const newTotalQuantity = state.totalQuantity + payload.quantity;
+            
+            
             return {
                 ...state,
                 status: true,
@@ -51,29 +53,27 @@ const reducer = (state = initialState, {type, payload}) => {
             }
 
         case 'ORDER_ADD_QUANTITY':
-            const newTotalPrice2 = state.totalPrice + payload.priceOfPizza;
-            const newTotalQuantity2 = state.totalQuantity + 1;
-            const id = payload.id,
-                  quantity = payload.quantity,
-                  activeDough = payload.activeDough,
-                  activeDiameter = payload.activeDiameter,
-                  priceOfItem = quantity * payload.priceOfPizza;
-            const item = state.orderItems.find(item => item.id === id);
+            const {id, activeDough, activeDiameter} = payload;
+            const item = state.orderItems.find(item => (item.id === id) && (item.activeDough === activeDough) && (item.activeDiameter === activeDiameter));
+            console.log(item);
+            const quantity = item.quantity + 1;
+            const priceOfItem = item.priceOfPizza * quantity;
             const newItem = {
                 ...item,
                 quantity,
-                activeDough,
-                activeDiameter,
                 priceOfItem
             };
 
             const newArry = state.orderItems.map(item => {
-                if (item.id === id) {
+                if ((item.id === id) && (item.activeDough === activeDough) && (item.activeDiameter === activeDiameter)) {
                     return newItem;
                 }
                 return item;
             });
             
+            console.log(newArry);
+            const newTotalPrice2 = state.totalPrice + item.priceOfPizza;
+            const newTotalQuantity2 = state.totalQuantity + 1;
 
             return {
                 ...state,
@@ -93,8 +93,8 @@ const reducer = (state = initialState, {type, payload}) => {
             }
 
         case 'DEL_ITEM_ORDER':
-            const idx = payload;
-            const itemIndex = state.orderItems.findIndex(item => item.id === idx);
+            const {idDelItem, activeDoughDelItem, activeDiameterDelItem} = payload;
+            const itemIndex = state.orderItems.findIndex(item => (item.id === idDelItem) && (item.activeDough === activeDoughDelItem) && (item.activeDiameter === activeDiameterDelItem));
             const totalPriceDelItem = state.totalPrice - state.orderItems[itemIndex]['priceOfItem'];
             const totalQuantityDelItem = state.totalQuantity - state.orderItems[itemIndex]['quantity'];
             

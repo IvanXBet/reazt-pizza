@@ -15,7 +15,7 @@ class HeaderCart extends Component {
 		const clazz = cartButton ? 'button button_cart ' : 'hiden';
 		return (
 			<Link to ={'/cart'} className={clazz}>
-				<span className="button__cart-text">{totalPrice} ₽</span>
+				<span className="button__cart-text button__cart-text_L">{totalPrice} ₽</span>
 				<div className="button__delimiter"></div>
 				<div  className='button__cart-icon' height='15'  alt='header-icon'/>
 				{/* <svg className='button__cart-icon' width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

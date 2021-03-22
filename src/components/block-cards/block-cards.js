@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Card from '../card/card';
+import Filter from '../filter/filter';
 import {connect} from 'react-redux';
 import {menuLoaded, menuREqested, menuError, orderAdd, addQuantity} from '../../actions';
 import WithRestoService from '../hoc/with-pizza-service';
@@ -16,11 +17,9 @@ class BlockCards extends Component  {
         this.props.menuREqested();
         this.props.PizzaService.getMenuItems()
             .then(res => this.props.menuLoaded(res))
-            .catch(error => this.props.menuError())
-
-        
-            
+            .catch(error => this.props.menuError())  
     }
+    
     newItemOrder = async (newItem) => {
        
         await this.props.orderAdd(newItem);
@@ -28,11 +27,9 @@ class BlockCards extends Component  {
     }
 
     newQuantityInOrder = async (payload) => {
-        
-        const item = payload;
-       
-        await this.props.addQuantity(item);
-       
+
+        await this.props.addQuantity(payload);
+
     }
 
     filterCart = (items, filter) => {
@@ -66,7 +63,7 @@ class BlockCards extends Component  {
         const content = !(loading || error) ? <View newItemOrder={this.newItemOrder} newQuantityInOrder={this.newQuantityInOrder} filterItems = {filterItems}/> : null;
         
         return (
-            <div className="content__items">
+            <div className="content">
                 {spinner}
                 {errorMenu}
                 {content}
@@ -77,15 +74,18 @@ class BlockCards extends Component  {
 const View = ({filterItems, newItemOrder, newQuantityInOrder}) => {
     
     return (
-        <div className='container'>
-            <div className='content__cards'>
-                {
-                    filterItems.map(menuItem => {
-                        return <Card newItemOrder={newItemOrder} newQuantityInOrder={newQuantityInOrder} key={menuItem.id} menuItem = {menuItem}/>
-                    })
-                }
+        <>
+            <Filter/>
+            <div className='container'>
+                <div className='content__cards'>
+                    {
+                        filterItems.map(menuItem => {
+                            return <Card key={menuItem.id} newItemOrder={newItemOrder} newQuantityInOrder={newQuantityInOrder}  menuItem = {menuItem}/>
+                        })
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

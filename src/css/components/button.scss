@@ -1,3 +1,18 @@
+@keyframes onClick  {
+    from {
+        border: 1px solid #fff;
+        
+    }
+    50% {
+        border: 9px solid #fff;
+        
+    }
+    to {
+        border: 1px solid #fff;
+        
+    }
+}
+
 .button {
     box-sizing: border-box;
     padding-bottom: 3px;
@@ -31,13 +46,14 @@
     
     &__delimiter {
         width: 1px;
-        height: 25px;
+        height: 22px;
         background-color: rgba(255, 255, 255, 0.25);
-        margin-left: 14px;
-        margin-right: 14px;
+        margin-left: 16px;
+        margin-right: 15px;
+        margin-top: 2px;
     }
     &_cart {
-        width: 150px;
+        width: 170px;
         height: 50px;
         &:hover{
             background-color: #fff;
@@ -99,7 +115,7 @@
         justify-content: space-between;
 
         &__plus {
-            margin-top: 2px;
+            margin-top: 4px;
             color: #EB5A1E;
         }
         &__text {
@@ -116,7 +132,7 @@
             font-size: 16px;
             line-height: 19px;
             color: #EB5A1E;
-            
+            margin-top: 1px;
         }
         &:hover {
             background-color: #EB5A1E;
@@ -127,6 +143,9 @@
             .button_card__add {
                 color: #fff;
             }
+        }
+        &:active  {
+            animation: onClick 0.2s ease-out;
         }
     }
     &_added {
@@ -238,10 +257,24 @@
         letter-spacing: 0.015em;
 
         color: #2C2C2C;
+        margin-top: 10px;
         
         &_active {
             background: #282828;
             color: #FFFFFF;
+        }
+        &:hover {
+            border: 1px solid #2C2C2C;;
+        }
+    }
+    &_mobFilter {
+        display: none;
+        width: 50px;
+        background-color: #fff;
+        font-size: 15px;
+        justify-content: flex-start;
+        &:active {
+            color:#EB5A1E;
         }
     }
 }
