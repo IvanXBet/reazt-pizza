@@ -267,6 +267,18 @@
         margin-top: 50px;
         width: 140px;
         height: 46px;
+        color: #fff;
+        font-size: 18px;
+    }
+    &_modalRegist {
+        position: relative;
+        left: 585px;
+        top: 20px;
+        margin-top: 50px;
+        width: 180px;
+        height: 46px;
+        color: #fff;
+        font-size: 18px;
     }
     &_headerInput{
         height: 35px;
@@ -274,19 +286,18 @@
         border: none;
         
         
-        background: #C4C4C4;
         border-radius: 30px;
         font-size: 15px;
         color: #FFFFFF;
     }
     &_headerRegist {
-        height: 30px;
+        height: 35px;
         width: 140px;
         border: none;
-
-        background: #C4C4C4;
+        color: $orange;
+        border: $orange solid 1px;
+        background: #fff;
         border-radius: 30px;
         font-size: 15px;
-        color: #FFFFFF;
     }
 }

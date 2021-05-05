@@ -13,6 +13,7 @@ import backIcon from '../../assets/img/cart-icon-back.svg';
 
 
 class CartBlock extends Component  {
+
     allClear =  () => {
         this.props.delOrder();
     }

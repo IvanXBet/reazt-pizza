@@ -17,8 +17,8 @@ const Header = () => {
     const message = useMessage();
     const [moadlInputActive, setMoadlInputActive] = useState(false);
     const [moadlRegistActive, setMoadlRegistActive] = useState(false);
-    const [form, setForm] = useState({email:'', password:'', name:'', phone: ''});
-
+    const [form, setForm] = useState({email:'', password:'', name:'', phone: '', bday: ''});
+   
     const [user, setUser] = useState({auth: false, name: ''});
     
 
@@ -49,7 +49,7 @@ const Header = () => {
         try {
           const data = await request('/api/auth/register', 'POST', {...form})
           message(data.message)
-          
+          window.location.reload();
         } catch (e) {}
       }
 
@@ -60,12 +60,12 @@ const Header = () => {
 
             login(data.token, data.userId, data.userName);
 
-            console.log(data)
+            
             window.location.reload();
         } catch (e) {}
       }
 
-    const buttons = user.auth ? <Link to ={'/profil'} className='button button_headerInput '>{user.userName}</Link> : <button onClick={() => {setMoadlInputActive(true)}} className='button button_headerInput '>Вход</button>
+    const buttons = user.auth ? <Link to ={'/profil'} className='button button_headerInput '>{user.userName}</Link> : <View Input={setMoadlInputActive} Regist={setMoadlRegistActive}/>
 
     return (
         <>
@@ -75,14 +75,8 @@ const Header = () => {
                         <div className='header__items'>
                             <HeaderLogo/>
                             {buttons}
-                                {/* <div className='header__buttons'>
-                                   
-                                    
-                               
-                                    
-                                    
-                                </div> */}
-                            <button onClick={() => {setMoadlRegistActive(true)}} className='button button_headerRegist '>регистрация</button>
+                                {/*  */}
+                            
                         </div>
                     </div>
                 </div>
@@ -109,17 +103,39 @@ const Header = () => {
             
             <Modal moadlActive={moadlRegistActive} setMoadlActive={setMoadlRegistActive}>
                 <div className='modalRegist'>
+                    <div className='modalInput__title'>Регистрация</div>
                     <form>
-                        <input placeholder='электронная почта' type="email" name="email" onChange={changeInput} ></input>
-                        <input placeholder='номер телефона' type="text" name="phone" onChange={changeInput}></input> 
-                        <input placeholder='пароль' type="password" name="password" onChange={changeInput}></input>
-                        <input placeholder='имя' type="text" name="name" onChange={changeInput}></input>
+                        <div className='modalRegist__inputs'>
+                            <input placeholder='электронная почта' type="email" name="email" onChange={changeInput} ></input>
+                            <input placeholder='пароль' type="password" name="password" onChange={changeInput}></input>
+                            <input placeholder='имя' type="text" name="name" onChange={changeInput}></input>
+                            
+                            <input placeholder='дата дня рождения' type="date" name="bday" min="1900-01-01" max="2099-12-31" onChange={changeInput}></input> 
+                            <input placeholder='номер телефона' type="text" name="phone" onChange={changeInput}></input>    
+                        </div> 
                         
-                        <div className='button button_modalInput' onClick={registerHendler} disabled={loading}>Регистрация</div>
+                        <div className='button button_modalRegist' onClick={registerHendler} disabled={loading}>Регистрация</div>
                     </form>
                 </div>   
             </Modal>
         </>
+    )
+}
+
+
+const View = ({Input, Regist}) => {
+    
+    return (
+        
+        <div className='header__buttons'>
+
+            <div onClick={() => {Regist(true)}} className='button button_headerRegist '>Регистрация</div>             
+            <button onClick={() => {Input(true)}} className='button button_headerInput '>Вход</button>
+                   
+                               
+        </div>
+           
+        
     )
 }
 

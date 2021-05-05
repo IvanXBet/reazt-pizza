@@ -15,10 +15,10 @@ class BlockCards extends Component  {
         this.props.PizzaService.getMenuItems()
             .then(res => this.props.menuLoaded(res))
             .catch(error => this.props.menuError())  
+            
+        
+        
     }
-    
-
-    
     
     
     

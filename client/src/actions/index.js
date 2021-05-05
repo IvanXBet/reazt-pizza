@@ -53,12 +53,7 @@ const onFilterSelect = (name) => {
         payload: name,
     }
 }
-const pluseItemQuantity = (id) => {
-    return {
-        type: 'PLUSE_ITEM_QUANTITY',
-        payload: id
-    }
-}
+
 const reloadOrder = (order) => {
     return {
         type: 'RELOAD_ORDER',
@@ -75,7 +70,6 @@ export {
     delItemOrder,
     offSatus,
     onFilterSelect,
-    pluseItemQuantity,
     changeQuantity,
     reloadOrder,
 };

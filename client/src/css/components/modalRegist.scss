@@ -1,41 +1,23 @@
-.modalInput {
-    width: 100%;
+.modalRegist {
+    width: 85%;
     height: 100%;
+    margin: 0 auto;
     display: flex;
-    padding-top: 70px;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
+    padding-top: 65px;
     position: relative;
-    &__left {
-        width: 370px;
-        height: 360px;
-    }
-    &__right {
-        width: 320px;
-        height: 320px;
-        padding-top: 20px;
-        img {
-            height: 100%;
-        }
-    }
-    &__title {
-        font-style: normal;
-        font-weight: bold;
-        font-size: 32px;
-        line-height: 39px;
-
-        letter-spacing: 0.01em;
-
-        color: #000000;
-    }
     &__inputs {
-        margin-top: 35px;
+        margin-top: 25px;
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
         input {
             padding-left: 10px;
-            margin-top: 25px;
+            margin-top: 35px;
+            
             height: 35px;
-            width: 100%;
+            width: 360px;
             border: none;
             border-bottom: 2px solid #000;
 

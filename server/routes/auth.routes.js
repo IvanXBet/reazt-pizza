@@ -25,7 +25,7 @@ router.post('/register',
       })
     }
 
-    const {email, password, name, phone} = req.body
+    const {email, password, name, phone, bday} = req.body
 
     const candidate = await User.findOne({ email })
 
@@ -34,7 +34,7 @@ router.post('/register',
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
-    const user = new User({ email, password: hashedPassword, name, phone})
+    const user = new User({ email, password: hashedPassword, name, phone, bday})
 
     await user.save()
 
@@ -81,7 +81,7 @@ router.post('/login',
       config.get('jwtSecret'),
       { expiresIn: '1h' }
     )
-    res.json({ token, userId: user.id, userName: user.name, userEmail: user.email, userPhone: user.phone})
+    res.json({ token, userId: user.id, userName: user.name, userEmail: user.email, userPhone: user.phone, bdayUser: user.bday})
     
 
   } catch (e) {

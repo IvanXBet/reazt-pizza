@@ -39,6 +39,8 @@ const reducer = (state = initialState, {type, payload}) => {
         case 'ORDER_ADD':
             const newTotalPrice = state.totalPrice + payload.priceOfPizza;
             const newTotalQuantity = state.totalQuantity + payload.quantity;
+
+           
             
             localStorage.setItem('dateOrder', JSON.stringify(
                 [
@@ -46,6 +48,13 @@ const reducer = (state = initialState, {type, payload}) => {
                     payload
                 ]
                 ));
+            
+            localStorage.setItem('totalInfo', JSON.stringify(
+                {
+                    totalPrice: newTotalPrice,
+                    totalQuantity: newTotalQuantity,
+                }
+            ))
 
             return {
                 ...state,
@@ -55,7 +64,7 @@ const reducer = (state = initialState, {type, payload}) => {
                     payload,
                 ],
                 totalPrice: newTotalPrice,
-                totalQuantity :newTotalQuantity,
+                totalQuantity: newTotalQuantity,
             }
 
         case 'ORDER_CHANGE_QUANTITY':
@@ -121,7 +130,12 @@ const reducer = (state = initialState, {type, payload}) => {
 
             }
             localStorage.setItem('dateOrder', JSON.stringify(newArry));
-            
+            localStorage.setItem('totalInfo', JSON.stringify(
+                {
+                    TotalPrice: newTotalPrice2,
+                    TotalQuantity: newTotalQuantity2,
+                }
+            ))
             return {
                 ...state,
                 orderItems: newArry,
@@ -132,6 +146,11 @@ const reducer = (state = initialState, {type, payload}) => {
 
         case 'DEL_ORDER':
             const newItemOrder = [];
+            localStorage.removeItem('dateOrder');
+            localStorage.setItem('totalInfo', JSON.stringify({
+                totalPrice: 0,
+                totalQuantity: 0,
+            }));
             return {
                 ...state,
                 status: false,
@@ -145,22 +164,38 @@ const reducer = (state = initialState, {type, payload}) => {
             const itemIndex = state.orderItems.findIndex(item => (item.id === idDelItem) && (item.activeDough === activeDoughDelItem) && (item.activeDiameter === activeDiameterDelItem));
             const totalPriceDelItem = state.totalPrice - state.orderItems[itemIndex]['priceOfItem'];
             const totalQuantityDelItem = state.totalQuantity - state.orderItems[itemIndex]['quantity'];
+
+            const newArrDelItem = [
+                ...state.orderItems.slice(0, itemIndex),
+                ...state.orderItems.slice(itemIndex + 1)
+            ]
+            if(newArrDelItem.length < 1){
+                localStorage.removeItem('dateOrder');
+            } else {
+                localStorage.setItem('dateOrder', JSON.stringify(newArrDelItem));
+            }
             
+
+            localStorage.setItem('totalInfo', JSON.stringify({
+                totalPrice: totalPriceDelItem,
+                totalQuantity: totalQuantityDelItem,
+            }));
+
             return {
                 ...state,
-                orderItems: [
-                    ...state.orderItems.slice(0, itemIndex),
-                    ...state.orderItems.slice(itemIndex + 1)
-                ],
+                orderItems: newArrDelItem,
                 totalPrice: totalPriceDelItem,
                 totalQuantity: totalQuantityDelItem,
             }
 
         case 'RELOAD_ORDER': 
-            const order = JSON.parse(payload);
             return {
                 ...state,
-                orderItems: order
+                orderItems: payload.order,
+                status: payload.status,
+                totalQuantity: payload.totalInfo.totalQuantity,
+                totalPrice: payload.totalInfo.totalPrice
+
             }
 
         case 'OFF_STATUS':
