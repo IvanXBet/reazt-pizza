@@ -1,0 +1,141 @@
+{
+	"menu": [
+		{
+			"title": "Пепперони",
+			"price": 20,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/523c10a1-464d-41ad-9d28-f414a009ae22.jpg",
+			"category": "classical",
+			"id": 1,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Сырная",
+			"price": 16,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/598583c68073460db440aed323ff50e7_292x292.jpeg",
+			"category": "vegetarian",
+			"id": 2,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус", "моцарелла",   "моцарелла",  "пикантная пепперони"]
+		},
+		{
+			"title": "Чизбургер-пицца",
+			"price": 18,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg",
+			"category": "classical",
+			"id": 3,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус", "пикантная пепперони"]
+		},
+		{
+			"title": "Маргарита",
+			"price": 16,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/e8a8ded1f8154d11ab5065dc5208b187_292x292.jpeg",
+			"category": "vegetarian",
+			"id": 4,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Четыре сезона",
+			"price": 15,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/6d4e1c2c-1c81-40c6-95d9-0d19afcebcb5.jpg",
+			"category": "classical",
+			"id": 5,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Сырный цыпленок",
+			"price": 13,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/fc4d663d-fb00-48ea-8391-7a4648553f25.jpg",
+			"category": "classical",
+			"id": 6,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Ветчина и сыр",
+			"price": 11,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/679924dc-e4fd-45fd-aceb-be139f265425.jpg",
+			"category": "classical",
+			"id": 7,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Ветчина и грибы",
+			"price": 12,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/26fa2948b6c74113afb9d09a3262fc26_292x292.jpeg",
+			"category": "classical",
+			"id": 8,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Супермясная",
+			"price": 25,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/8b052931-395f-4b38-8af0-55f6fbd7c9e5.jpg",
+			"category": "meat",
+			"id": 9,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Мясная",
+			"price": 23,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/462796e6-a697-4dc6-8d7a-9dafbba7f8d5.jpg",
+			"category": "meat",
+			"id": 10,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Двойная пепперони",
+			"price": 25,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/9c046e19-b7a6-47f5-b2be-91bb9d77a74b.jpg",
+			"category": "meat",
+			"id": 11,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Цыпленок барбекю",
+			"price": 22,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/14414e03-0322-4751-a431-820c8ce84e58.jpg",
+			"category": "meat",
+			"id": 12,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Овощи и грибы",
+			"price": 23,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/7a497170e99a435f8535f33c3ebaddc3_292x292.jpeg",
+			"category": "vegetarian",
+			"id": 13,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Пицца-пирог",
+			"price": 20,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/3327d3dd-1feb-443f-97b6-731fa8e64fac.jpg",
+			"category": "vegetarian",
+			"id": 14,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Мексиканская",
+			"price": 21,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/7a497170e99a435f8535f33c3ebaddc3_292x292.jpeg",
+			"category": "sharp",
+			"id": 15,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Кисло-сладкий цыпленок",
+			"price": 10,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/ff4b4951-6257-49fe-9c72-f0e272d8a503.jpg",
+			"category": "classical",
+			"id": 16,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		},
+		{
+			"title": "Цыпленок барбекю",
+			"price": 19,
+			"url": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/14414e03-0322-4751-a431-820c8ce84e58.jpg",
+			"category": "classical",
+			"id": 17,
+			"ingredients": ["пикантная пепперони", "моцарелла",  "томатный соус"]
+		}
+	]
+}
+
